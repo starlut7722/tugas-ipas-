@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>KANTINKEREN • Apps Premium</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+    }
+
+    body {
+      background: #f5f7fa;
+      min-height: 100vh;
+    }
+
+    .app {
+      max-width: 480px;
+      margin: 0 auto;
+      background: #ffffff;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .header {
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #f0f0f0;
+      background: white;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: #000;
+    }
+
+    .logo span {
+      background: #000;
+      color: white;
+      font-size: 0.7rem;
+      padding: 3px 8px;
+      border-radius: 20px;
+      margin-left: 6px;
+    }
+
+    .cart-btn {
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      position: relative;
+      padding: 6px;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      background: #000;
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 2px 5px;
+      border-radius: 30px;
+      min-width: 18px;
+      text-align: center;
+    }
+
+    .hero {
+      padding: 24px 20px 16px;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #000;
+      line-height: 1.1;
+    }
+
+    .hero p {
+      color: #666;
+      font-size: 0.9rem;
+      margin-top: 6px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: #000;
+      color: white;
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-top: 14px;
+      letter-spacing: 0.3px;
+    }
+
+    .search-wrapper {
+      padding: 8px 20px 20px;
+    }
+
+    .search-box {
+      background: #f5f5f5;
+      border-radius: 14px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+
+    .search-box:focus-within {
+      background: white;
+      border-color: #000;
+    }
+
+    .search-box span {
+      color: #888;
+      font-size: 1rem;
+    }
+
+    .search-box input {
+      background: transparent;
+      border: none;
+      outline: none;
+      font-size: 0.95rem;
+      width: 100%;
+    }
+
+    .search-box input::placeholder {
+      color: #aaa;
+    }
+
+    .section-header {
+      padding: 8px 20px 16px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+
+    .section-header h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #000;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .section-header span {
+      color: #888;
+      font-size: 0.8rem;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 0 20px 24px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid #f0f0f0;
+    }
+
+    .product-card:active {
+      transform: scale(0.98);
+      background: #fafafa;
+    }
+
+    .product-img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+    }
+
+    .product-info {
+      padding: 12px 10px;
+    }
+
+    .product-name {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: #000;
+      margin-bottom: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .product-price {
+      font-weight: 700;
+      color: #000;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+
+    .btn-buy {
+      background: #000;
+      color: white;
+      border: none;
+      padding: 8px 0;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.75rem;
+      width: 100%;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .btn-buy:active {
+      background: #333;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 50px 20px;
+      color: #888;
+      display: none;
+    }
+
+    .empty-state p:first-child {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+      opacity: 0.5;
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      align-items: flex-end;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .modal-overlay.active { display: flex; }
+
+    .modal {
+      background: white;
+      width: 100%;
+      max-width: 480px;
+      border-radius: 24px 24px 0 0;
+      padding: 24px 20px 30px;
+      animation: slideUp 0.25s ease;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .modal-header h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #888;
+      padding: 4px;
+    }
+
+    .modal-img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-bottom: 20px;
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+    }
+
+    .modal-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 6px;
+      letter-spacing: -0.3px;
+    }
+
+    .modal-category {
+      color: #666;
+      font-size: 0.85rem;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .modal-price {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 20px;
+    }
+
+    .modal-desc {
+      color: #555;
+      margin-bottom: 28px;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    .modal-buy {
+      background: #000;
+      color: white;
+      border: none;
+      padding: 16px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      width: 100%;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .footer {
+      padding: 24px 20px 30px;
+      text-align: center;
+      border-top: 1px solid #f0f0f0;
+      margin-top: 8px;
+    }
+
+    .footer p {
+      color: #888;
+      font-size: 0.75rem;
+      margin-bottom: 6px;
+    }
+
+    .qr-section {
+      margin-top: 20px;
+      padding: 16px;
+      background: #f9f9f9;
+      border-radius: 20px;
+    }
+
+    .qr-title {
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 14px;
+      color: #000;
+    }
+
+    #qrcode {
+      display: flex;
+      justify-content: center;
+    }
+
+    #qrcode img {
+      border-radius: 12px;
+      width: 120px;
+      height: 120px;
+    }
+
+    .qr-download-btn {
+      background: #000;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      margin-top: 12px;
+      width: 100%;
+      transition: all 0.2s;
+    }
+
+    .qr-download-btn:hover {
+      background: #333;
+    }
+
+    .qr-download-btn:active {
+      transform: scale(0.97);
+    }
+
+    .qr-hint {
+      color: #aaa;
+      font-size: 0.7rem;
+      margin-top: 12px;
+    }
+
+    @media (min-width: 768px) {
+      .app { max-width: 1000px; }
+      .product-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    
+    <header class="header">
+      <div class="logo">
+        APPS<span>PREMIUM</span>
+      </div>
+      <button class="cart-btn" id="cartButton">
+        🛒
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </header>
+
+    <section class="hero">
+      <h1>Upgrade<br>Digitalmu</h1>
+      <p>Akses premium tanpa batas</p>
+      <div class="hero-badge">✦ 12 LAYANAN ✦</div>
+    </section>
+
+    <section class="search-wrapper">
+      <div class="search-box">
+        <span>🔍</span>
+        <input type="text" id="searchInput" placeholder="Cari aplikasi...">
+      </div>
+    </section>
+
+    <div class="section-header">
+      <h2>Semua Layanan</h2>
+      <span id="productCount">12 apps</span>
+    </div>
+
+    <div id="productGrid" class="product-grid"></div>
+
+    <div id="emptyState" class="empty-state">
+      <p>—</p>
+      <p style="font-weight: 500;">Tidak ditemukan</p>
+      <p style="font-size: 0.8rem;">Coba kata kunci lain</p>
+    </div>
+
+    <footer class="footer">
+      <p style="font-weight: 600; color: #000;">📱 ORDER VIA WHATSAPP</p>
+      <p>+62 838 2275 6312</p>
+      
+      <div class="qr-section">
+        <div class="qr-title">Scan QR</div>
+        <img src="qr-code.png" alt="QR Code" style="width:120px; height:120px; border-radius:12px; margin:0 auto; display:block;">
+        <button class="qr-download-btn" id="downloadQRBtn">⬇️ Download QR</button>
+        <p class="qr-hint">Simpan QR untuk poster / share</p>
+      </div>
+      
+      <p style="margin-top: 20px;">© KANTINKEREN 2026</p>
+    </footer>
+
+  </div>
+
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Detail</h3>
+        <button class="modal-close" id="modalClose">✕</button>
+      </div>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const WA_NUMBER = '6283822756312';
+
+      const products = [
+        { id:1, name:'YouTube Premium', sub:'1 Bulan', price:5000, img:'aplikasi/youtube.jpeg', icon:'▶️', desc:'Tanpa iklan • Background play • YouTube Music' },
+        { id:2, name:'YouTube Premium', sub:'3 Bulan', price:15000, img:'aplikasi/youtube.jpeg', icon:'▶️', desc:'Hemat 25% • Semua fitur premium' },
+        { id:3, name:'Netflix', sub:'1 Bulan', price:25000, img:'aplikasi/netflix.jpeg', icon:'🎬', desc:'Ultra HD • 4 layar • Download offline' },
+        { id:4, name:'Netflix', sub:'3 Bulan', price:70000, img:'aplikasi/netflix.jpeg', icon:'🎬', desc:'Hemat 1 bulan • Sharing diperbolehkan' },
+        { id:5, name:'Spotify', sub:'1 Bulan', price:20000, img:'aplikasi/spotify.jpeg', icon:'🎵', desc:'Tanpa iklan • Offline mode • Unlimited skips' },
+        { id:6, name:'Spotify', sub:'2 Bulan', price:35000, img:'aplikasi/spotify.jpeg', icon:'🎵', desc:'Harga spesial • Semua fitur premium' },
+        { id:7, name:'ChatGPT', sub:'Plus 1 Bulan', price:12000, img:'aplikasi/chat gbt.jpeg', icon:'🤖', desc:'Akses GPT-4 • Response lebih cepat' },
+        { id:8, name:'Canva', sub:'Pro 1 Bulan', price:4000, img:'aplikasi/canva.jpeg', icon:'🎨', desc:'100M+ asset • BG remover • Magic tools' },
+        { id:9, name:'Canva', sub:'Pro 1 Tahun', price:15000, img:'aplikasi/canva.jpeg', icon:'🎨', desc:'Hemat 70% • Full akses premium' },
+        { id:10, name:'Chat Admin', sub:'Tanya-tanya', price:1000, img:'aplikasi/apk.png', icon:'💬', desc:'sung chat admin yak' },
+        { id:11, name:'CapCut', sub:'Pro 1 Bulan', price:10000, img:'aplikasi/capcut.jpeg', icon:'✂️', desc:'No watermark • Pro effects • Cloud storage' },
+        { id:12, name:'Alight Motion', sub:'Pro 1 Tahun', price:4000, img:'aplikasi/am.png', icon:'🎥', desc:'Motion graphics • Vector editing • VFX' }
+      ];
+
+      // QR Code pakai Google Charts API (PASTI MUNCUL)
+      const qrcodeContainer = document.getElementById('qrcode');
+      if (qrcodeContainer) {
+        const currentUrl = window.location.href || 'https://kantinkeren.my.id';
+        const qrUrl = `https://chart.googleapis.com/chart?chs=120x120&cht=qr&chl=${encodeURIComponent(currentUrl)}&choe=UTF-8`;
+        qrcodeContainer.innerHTML = `<img src="${qrUrl}" alt="QR Code" style="border-radius:12px;">`;
+      }
+
+      // Download QR Code
+      const downloadBtn = document.getElementById('downloadQRBtn');
+      if (downloadBtn) {
+        downloadBtn.addEventListener('click', function() {
+          const img = document.querySelector('#qrcode img');
+          if (img) {
+            // Buat canvas untuk download
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const image = new Image();
+            image.crossOrigin = 'anonymous';
+            image.src = img.src;
+            image.onload = function() {
+              canvas.width = image.width;
+              canvas.height = image.height;
+              ctx.drawImage(image, 0, 0);
+              const link = document.createElement('a');
+              link.download = 'kantinkeren-qr.png';
+              link.href = canvas.toDataURL('image/png');
+              link.click();
+            };
+          } else {
+            alert('QR Code belum siap, tunggu sebentar...');
+          }
+        });
+      }
+
+      const pg=document.getElementById('productGrid'), es=document.getElementById('emptyState'),
+            pc=document.getElementById('productCount'), si=document.getElementById('searchInput'),
+            mo=document.getElementById('modalOverlay'), mc=document.getElementById('modalContent'),
+            mcl=document.getElementById('modalClose'), ccs=document.getElementById('cartCount'),
+            cb=document.getElementById('cartButton');
+      
+      let sq='', cart=[];
+      
+      function r(){
+        let f=products;
+        if(sq.trim()){ 
+          let q=sq.toLowerCase(); 
+          f=f.filter(p=>p.name.toLowerCase().includes(q)||(p.sub&&p.sub.toLowerCase().includes(q))); 
+        }
+        pc.textContent=f.length+' apps';
+        if(!f.length){ pg.innerHTML=''; es.style.display='block'; return; }
+        es.style.display='none';
+        let h=''; 
+        f.forEach(p=>{ 
+          h+=`<div class="product-card" data-id="${p.id}">
+            <img class="product-img" src="${p.img}" alt="${p.name}" onerror="this.outerHTML='<div class=\\'product-img\\' style=\\'display:flex;align-items:center;justify-content:center;font-size:2.5rem;background:#e0e0e0;\\'>${p.icon}</div>'">
+            <div class="product-info">
+              <div class="product-name">${p.name} · ${p.sub}</div>
+              <div class="product-price">Rp ${p.price.toLocaleString('id-ID')}</div>
+              <button class="btn-buy" data-id="${p.id}" data-name="${p.name} ${p.sub}">Beli</button>
+            </div>
+          </div>`; 
+        });
+        pg.innerHTML=h;
+      }
+      
+      function wa(id,nm){
+        window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Halo, saya ingin beli *'+nm+'*')}`,'_blank');
+        cart.push({id,nm}); 
+        ccs.textContent=cart.length;
+      }
+      
+      function md(id){ 
+        let p=products.find(pr=>pr.id===id); 
+        if(!p)return; 
+        mc.innerHTML=`<img class="modal-img" src="${p.img}" alt="${p.name}" onerror="this.outerHTML='<div class=\\'modal-img\\' style=\\'display:flex;align-items:center;justify-content:center;font-size:4rem;background:#e0e0e0;\\'>${p.icon}</div>'"><h2 class="modal-name">${p.name}</h2><div class="modal-category">${p.sub} · PREMIUM</div><div class="modal-price">Rp ${p.price.toLocaleString('id-ID')}</div><p class="modal-desc">${p.desc}</p><button class="modal-buy" data-id="${p.id}" data-name="${p.name} ${p.sub}">Beli via WhatsApp</button>`; 
+        mo.classList.add('active'); 
+      }
+      
+      si.addEventListener('input',e=>{ sq=e.target.value; r(); });
+      
+      pg.addEventListener('click',e=>{ 
+        let c=e.target.closest('.product-card'); 
+        if(!c)return; 
+        let id=parseInt(c.dataset.id); 
+        if(e.target.classList.contains('btn-buy')){ 
+          wa(id,e.target.dataset.name); 
+          e.stopPropagation(); 
+        } else md(id); 
+      });
+      
+      mc.addEventListener('click',e=>{ 
+        if(e.target.classList.contains('modal-buy')){ 
+          let b=e.target; 
+          wa(parseInt(b.dataset.id),b.dataset.name); 
+          mo.classList.remove('active'); 
+        } 
+      });
+      
+      mcl.addEventListener('click',()=>mo.classList.remove('active'));
+      mo.addEventListener('click',e=>{ if(e.target===mo) mo.classList.remove('active'); });
+      cb.addEventListener('click',()=>{ alert(cart.length?`🛒 ${cart.length} item`:'🛒 Keranjang kosong'); });
+      
+      r();
+    })();
+  </script>
+</body>
+</html>
