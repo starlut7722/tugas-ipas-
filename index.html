@@ -177,11 +177,26 @@
       cursor: pointer;
       transition: all 0.2s ease;
       border: 1px solid #f0f0f0;
+      position: relative;
     }
 
     .product-card:active {
       transform: scale(0.98);
       background: #fafafa;
+    }
+
+    .discount-badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: #ff3b30;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 20px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      z-index: 2;
+      letter-spacing: 0.3px;
     }
 
     .product-img {
@@ -213,7 +228,15 @@
       font-weight: 700;
       color: #000;
       font-size: 0.9rem;
-      margin-bottom: 10px;
+      margin-bottom: 4px;
+    }
+
+    .price-old {
+      text-decoration: line-through;
+      color: #999;
+      font-size: 0.75rem;
+      font-weight: 400;
+      margin-right: 6px;
     }
 
     .btn-buy {
@@ -229,11 +252,10 @@
       transition: all 0.2s;
       text-transform: uppercase;
       letter-spacing: 0.3px;
+      margin-top: 6px;
     }
 
-    .btn-buy:active {
-      background: #333;
-    }
+    .btn-buy:active { background: #333; }
 
     .empty-state {
       text-align: center;
@@ -242,11 +264,7 @@
       display: none;
     }
 
-    .empty-state p:first-child {
-      font-size: 2.5rem;
-      margin-bottom: 12px;
-      opacity: 0.5;
-    }
+    .empty-state p:first-child { font-size: 2.5rem; margin-bottom: 12px; opacity: 0.5; }
 
     .modal-overlay {
       display: none;
@@ -283,21 +301,8 @@
       margin-bottom: 20px;
     }
 
-    .modal-header h3 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .modal-close {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: #888;
-      padding: 4px;
-    }
+    .modal-header h3 { font-size: 1.1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #888; padding: 4px; }
 
     .modal-img {
       width: 100%;
@@ -312,119 +317,27 @@
       font-size: 4rem;
     }
 
-    .modal-name {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #000;
-      margin-bottom: 6px;
-      letter-spacing: -0.3px;
-    }
-
-    .modal-category {
-      color: #666;
-      font-size: 0.85rem;
-      margin-bottom: 16px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .modal-price {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #000;
-      margin-bottom: 20px;
-    }
-
-    .modal-desc {
-      color: #555;
-      margin-bottom: 28px;
-      line-height: 1.5;
-      font-size: 0.95rem;
-    }
-
+    .modal-name { font-size: 1.5rem; font-weight: 700; color: #000; margin-bottom: 6px; }
+    .modal-category { color: #666; font-size: 0.85rem; margin-bottom: 16px; text-transform: uppercase; }
+    .modal-price { font-size: 1.8rem; font-weight: 700; color: #000; margin-bottom: 20px; }
+    .modal-price .price-old { font-size: 1rem; }
+    .modal-desc { color: #555; margin-bottom: 28px; line-height: 1.5; font-size: 0.95rem; }
     .modal-buy {
-      background: #000;
-      color: white;
-      border: none;
-      padding: 16px;
-      border-radius: 40px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      width: 100%;
-      cursor: pointer;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      background: #000; color: white; border: none; padding: 16px; border-radius: 40px;
+      font-weight: 600; font-size: 0.95rem; width: 100%; cursor: pointer; text-transform: uppercase;
     }
 
-    .footer {
-      padding: 24px 20px 30px;
-      text-align: center;
-      border-top: 1px solid #f0f0f0;
-      margin-top: 8px;
-    }
-
-    .footer p {
-      color: #888;
-      font-size: 0.75rem;
-      margin-bottom: 6px;
-    }
-
-    .qr-section {
-      margin-top: 20px;
-      padding: 16px;
-      background: #f9f9f9;
-      border-radius: 20px;
-    }
-
-    .qr-title {
-      font-weight: 600;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 14px;
-      color: #000;
-    }
-
-    #qrcode {
-      display: flex;
-      justify-content: center;
-    }
-
-    #qrcode img {
-      border-radius: 12px;
-      width: 120px;
-      height: 120px;
-    }
-
+    .footer { padding: 24px 20px 30px; text-align: center; border-top: 1px solid #f0f0f0; margin-top: 8px; }
+    .footer p { color: #888; font-size: 0.75rem; margin-bottom: 6px; }
+    .qr-section { margin-top: 20px; padding: 16px; background: #f9f9f9; border-radius: 20px; }
+    .qr-title { font-weight: 600; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 14px; color: #000; }
+    #qrcode { display: flex; justify-content: center; }
+    #qrcode img { border-radius: 12px; width: 120px; height: 120px; }
     .qr-download-btn {
-      background: #000;
-      color: white;
-      border: none;
-      padding: 10px 16px;
-      border-radius: 30px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      cursor: pointer;
-      margin-top: 12px;
-      width: 100%;
-      transition: all 0.2s;
+      background: #000; color: white; border: none; padding: 10px 16px; border-radius: 30px;
+      font-size: 0.75rem; font-weight: 600; text-transform: uppercase; cursor: pointer; margin-top: 12px; width: 100%;
     }
-
-    .qr-download-btn:hover {
-      background: #333;
-    }
-
-    .qr-download-btn:active {
-      transform: scale(0.97);
-    }
-
-    .qr-hint {
-      color: #aaa;
-      font-size: 0.7rem;
-      margin-top: 12px;
-    }
+    .qr-hint { color: #aaa; font-size: 0.7rem; margin-top: 12px; }
 
     @media (min-width: 768px) {
       .app { max-width: 1000px; }
@@ -436,19 +349,14 @@
   <div class="app">
     
     <header class="header">
-      <div class="logo">
-        APPS<span>PREMIUM</span>
-      </div>
-      <button class="cart-btn" id="cartButton">
-        🛒
-        <span class="cart-count" id="cartCount">0</span>
-      </button>
+      <div class="logo">APPS<span>PREMIUM</span></div>
+      <button class="cart-btn" id="cartButton">🛒<span class="cart-count" id="cartCount">0</span></button>
     </header>
 
     <section class="hero">
       <h1>Upgrade<br>Digitalmu</h1>
       <p>Akses premium tanpa batas</p>
-      <div class="hero-badge">✦ 12 LAYANAN ✦</div>
+      <div class="hero-badge">✦ 11 LAYANAN ✦</div>
     </section>
 
     <section class="search-wrapper">
@@ -460,7 +368,7 @@
 
     <div class="section-header">
       <h2>Semua Layanan</h2>
-      <span id="productCount">12 apps</span>
+      <span id="productCount">11 apps</span>
     </div>
 
     <div id="productGrid" class="product-grid"></div>
@@ -474,25 +382,20 @@
     <footer class="footer">
       <p style="font-weight: 600; color: #000;">📱 ORDER VIA WHATSAPP</p>
       <p>+62 838 2275 6312</p>
-      
       <div class="qr-section">
         <div class="qr-title">Scan QR</div>
         <img src="qr-code.png" alt="QR Code" style="width:120px; height:120px; border-radius:12px; margin:0 auto; display:block;">
         <button class="qr-download-btn" id="downloadQRBtn">⬇️ Download QR</button>
         <p class="qr-hint">Simpan QR untuk poster / share</p>
       </div>
-      
-      <p style="margin-top: 20px;">© KANTINKEREN 2026</p>
+      <p style="margin-top: 20px;">©️ KANTINKEREN 2026</p>
     </footer>
 
   </div>
 
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal">
-      <div class="modal-header">
-        <h3>Detail</h3>
-        <button class="modal-close" id="modalClose">✕</button>
-      </div>
+      <div class="modal-header"><h3>Detail</h3><button class="modal-close" id="modalClose">✕</button></div>
       <div id="modalContent"></div>
     </div>
   </div>
@@ -502,54 +405,18 @@
       const WA_NUMBER = '6283822756312';
 
       const products = [
-        { id:1, name:'YouTube Premium', sub:'1 Bulan', price:5000, img:'aplikasi/youtube.jpeg', icon:'▶️', desc:'Tanpa iklan • Background play • YouTube Music' },
-        { id:2, name:'YouTube Premium', sub:'3 Bulan', price:15000, img:'aplikasi/youtube.jpeg', icon:'▶️', desc:'Hemat 25% • Semua fitur premium' },
-        { id:3, name:'Netflix', sub:'1 Bulan', price:25000, img:'aplikasi/netflix.jpeg', icon:'🎬', desc:'Ultra HD • 4 layar • Download offline' },
-        { id:4, name:'Netflix', sub:'3 Bulan', price:70000, img:'aplikasi/netflix.jpeg', icon:'🎬', desc:'Hemat 1 bulan • Sharing diperbolehkan' },
-        { id:5, name:'Spotify', sub:'1 Bulan', price:20000, img:'aplikasi/spotify.jpeg', icon:'🎵', desc:'Tanpa iklan • Offline mode • Unlimited skips' },
-        { id:6, name:'Spotify', sub:'2 Bulan', price:35000, img:'aplikasi/spotify.jpeg', icon:'🎵', desc:'Harga spesial • Semua fitur premium' },
-        { id:7, name:'ChatGPT', sub:'Plus 1 Bulan', price:12000, img:'aplikasi/chat gbt.jpeg', icon:'🤖', desc:'Akses GPT-4 • Response lebih cepat' },
-        { id:8, name:'Canva', sub:'Pro 1 Bulan', price:4000, img:'aplikasi/canva.jpeg', icon:'🎨', desc:'100M+ asset • BG remover • Magic tools' },
-        { id:9, name:'Canva', sub:'Pro 1 Tahun', price:15000, img:'aplikasi/canva.jpeg', icon:'🎨', desc:'Hemat 70% • Full akses premium' },
-        { id:10, name:'Chat Admin', sub:'Tanya-tanya', price:1000, img:'aplikasi/apk.png', icon:'💬', desc:'sung chat admin yak' },
-        { id:11, name:'CapCut', sub:'Pro 1 Bulan', price:10000, img:'aplikasi/capcut.jpeg', icon:'✂️', desc:'No watermark • Pro effects • Cloud storage' },
-        { id:12, name:'Alight Motion', sub:'Pro 1 Tahun', price:4000, img:'aplikasi/am.png', icon:'🎥', desc:'Motion graphics • Vector editing • VFX' }
+        { id:1, name:'YouTube Premium', sub:'1 Bulan', price:4000, oldPrice:5000, img:'aplikasi/youtube.jpeg', icon:'▶️', desc:'Tanpa iklan • Background play • YouTube Music' },
+        { id:3, name:'Netflix', sub:'1 Bulan', price:20000, oldPrice:25000, img:'aplikasi/netflix.jpeg', icon:'🎬', desc:'Ultra HD • 4 layar • Download offline' },
+        { id:5, name:'Spotify', sub:'1 Bulan', price:15000, oldPrice:20000, img:'aplikasi/spotify.jpeg', icon:'🎵', desc:'Tanpa iklan • Offline mode • Unlimited skips' },
+        { id:6, name:'Spotify', sub:'2 Bulan', price:35000, oldPrice:null, img:'aplikasi/spotify.jpeg', icon:'🎵', desc:'Harga spesial • Semua fitur premium' },
+        { id:7, name:'ChatGPT', sub:'Plus 1 Bulan', price:12000, oldPrice:null, img:'aplikasi/chat gbt.jpeg', icon:'🤖', desc:'Akses GPT-4 • Response lebih cepat' },
+        { id:8, name:'Canva', sub:'Pro 1 Bulan', price:4000, oldPrice:null, img:'aplikasi/canva.jpeg', icon:'🎨', desc:'100M+ asset • BG remover • Magic tools' },
+        { id:9, name:'Canva', sub:'Pro 1 Tahun', price:12000, oldPrice:15000, img:'aplikasi/canva.jpeg', icon:'🎨', desc:'Hemat 70% • Full akses premium' },
+        { id:10, name:'Wink', sub:'7 Hari', price:4000, oldPrice:null, img:'aplikasi/wink.jpeg', icon:'📷', desc:'Video editor • AI retouch • 4K export' },
+        { id:11, name:'Wink', sub:'1 Bulan', price:8000, oldPrice:10000, img:'aplikasi/wink.jpeg', icon:'📷', desc:'Video editor premium sebulan penuh.' },
+        { id:12, name:'CapCut', sub:'Pro 1 Bulan', price:8000, oldPrice:10000, img:'aplikasi/capcut.jpeg', icon:'✂️', desc:'No watermark • Pro effects • Cloud storage' },
+        { id:13, name:'Video', sub:'1 Tahun', price:10000, oldPrice:12000, img:'aplikasi/video.jpeg', icon:'🎥', desc:'Akses video premium setahun penuh.' }
       ];
-
-      // QR Code pakai Google Charts API (PASTI MUNCUL)
-      const qrcodeContainer = document.getElementById('qrcode');
-      if (qrcodeContainer) {
-        const currentUrl = window.location.href || 'https://kantinkeren.my.id';
-        const qrUrl = `https://chart.googleapis.com/chart?chs=120x120&cht=qr&chl=${encodeURIComponent(currentUrl)}&choe=UTF-8`;
-        qrcodeContainer.innerHTML = `<img src="${qrUrl}" alt="QR Code" style="border-radius:12px;">`;
-      }
-
-      // Download QR Code
-      const downloadBtn = document.getElementById('downloadQRBtn');
-      if (downloadBtn) {
-        downloadBtn.addEventListener('click', function() {
-          const img = document.querySelector('#qrcode img');
-          if (img) {
-            // Buat canvas untuk download
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            const image = new Image();
-            image.crossOrigin = 'anonymous';
-            image.src = img.src;
-            image.onload = function() {
-              canvas.width = image.width;
-              canvas.height = image.height;
-              ctx.drawImage(image, 0, 0);
-              const link = document.createElement('a');
-              link.download = 'kantinkeren-qr.png';
-              link.href = canvas.toDataURL('image/png');
-              link.click();
-            };
-          } else {
-            alert('QR Code belum siap, tunggu sebentar...');
-          }
-        });
-      }
 
       const pg=document.getElementById('productGrid'), es=document.getElementById('emptyState'),
             pc=document.getElementById('productCount'), si=document.getElementById('searchInput'),
@@ -561,64 +428,35 @@
       
       function r(){
         let f=products;
-        if(sq.trim()){ 
-          let q=sq.toLowerCase(); 
-          f=f.filter(p=>p.name.toLowerCase().includes(q)||(p.sub&&p.sub.toLowerCase().includes(q))); 
-        }
+        if(sq.trim()){ let q=sq.toLowerCase(); f=f.filter(p=>p.name.toLowerCase().includes(q)||(p.sub&&p.sub.toLowerCase().includes(q))); }
         pc.textContent=f.length+' apps';
         if(!f.length){ pg.innerHTML=''; es.style.display='block'; return; }
         es.style.display='none';
         let h=''; 
         f.forEach(p=>{ 
-          h+=`<div class="product-card" data-id="${p.id}">
-            <img class="product-img" src="${p.img}" alt="${p.name}" onerror="this.outerHTML='<div class=\\'product-img\\' style=\\'display:flex;align-items:center;justify-content:center;font-size:2.5rem;background:#e0e0e0;\\'>${p.icon}</div>'">
-            <div class="product-info">
-              <div class="product-name">${p.name} · ${p.sub}</div>
-              <div class="product-price">Rp ${p.price.toLocaleString('id-ID')}</div>
-              <button class="btn-buy" data-id="${p.id}" data-name="${p.name} ${p.sub}">Beli</button>
-            </div>
-          </div>`; 
+          const priceHTML = p.oldPrice ? `<span class="price-old">Rp ${p.oldPrice.toLocaleString('id-ID')}</span> <span style="color:#ff3b30;">Rp ${p.price.toLocaleString('id-ID')}</span>` : `Rp ${p.price.toLocaleString('id-ID')}`;
+          const badgeHTML = p.oldPrice ? `<div class="discount-badge">HEMAT</div>` : '';
+          h+=`<div class="product-card" data-id="${p.id}">${badgeHTML}<img class="product-img" src="${p.img}" alt="${p.name}" onerror="this.outerHTML='<div class=\\'product-img\\' style=\\'display:flex;align-items:center;justify-content:center;font-size:2.5rem;background:#e0e0e0;\\'>${p.icon}</div>'"><div class="product-info"><div class="product-name">${p.name} · ${p.sub}</div><div class="product-price">${priceHTML}</div><button class="btn-buy" data-id="${p.id}" data-name="${p.name} ${p.sub}">Beli</button></div></div>`; 
         });
         pg.innerHTML=h;
       }
       
-      function wa(id,nm){
-        window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Halo, saya ingin beli *'+nm+'*')}`,'_blank');
-        cart.push({id,nm}); 
-        ccs.textContent=cart.length;
-      }
+      function wa(id,nm){ window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Halo, saya ingin beli *'+nm+'*')}`,'_blank'); cart.push({id,nm}); ccs.textContent=cart.length; }
       
       function md(id){ 
         let p=products.find(pr=>pr.id===id); 
-        if(!p)return; 
-        mc.innerHTML=`<img class="modal-img" src="${p.img}" alt="${p.name}" onerror="this.outerHTML='<div class=\\'modal-img\\' style=\\'display:flex;align-items:center;justify-content:center;font-size:4rem;background:#e0e0e0;\\'>${p.icon}</div>'"><h2 class="modal-name">${p.name}</h2><div class="modal-category">${p.sub} · PREMIUM</div><div class="modal-price">Rp ${p.price.toLocaleString('id-ID')}</div><p class="modal-desc">${p.desc}</p><button class="modal-buy" data-id="${p.id}" data-name="${p.name} ${p.sub}">Beli via WhatsApp</button>`; 
+        if(!p)return;
+        const priceHTML = p.oldPrice ? `<span class="price-old">Rp ${p.oldPrice.toLocaleString('id-ID')}</span> <span style="color:#ff3b30;">Rp ${p.price.toLocaleString('id-ID')}</span>` : `Rp ${p.price.toLocaleString('id-ID')}`;
+        mc.innerHTML=`<img class="modal-img" src="${p.img}" alt="${p.name}" onerror="this.outerHTML='<div class=\\'modal-img\\' style=\\'display:flex;align-items:center;justify-content:center;font-size:4rem;background:#e0e0e0;\\'>${p.icon}</div>'"><h2 class="modal-name">${p.name}</h2><div class="modal-category">${p.sub} · PREMIUM</div><div class="modal-price">${priceHTML}</div><p class="modal-desc">${p.desc}</p><button class="modal-buy" data-id="${p.id}" data-name="${p.name} ${p.sub}">Beli via WhatsApp</button>`; 
         mo.classList.add('active'); 
       }
       
       si.addEventListener('input',e=>{ sq=e.target.value; r(); });
-      
-      pg.addEventListener('click',e=>{ 
-        let c=e.target.closest('.product-card'); 
-        if(!c)return; 
-        let id=parseInt(c.dataset.id); 
-        if(e.target.classList.contains('btn-buy')){ 
-          wa(id,e.target.dataset.name); 
-          e.stopPropagation(); 
-        } else md(id); 
-      });
-      
-      mc.addEventListener('click',e=>{ 
-        if(e.target.classList.contains('modal-buy')){ 
-          let b=e.target; 
-          wa(parseInt(b.dataset.id),b.dataset.name); 
-          mo.classList.remove('active'); 
-        } 
-      });
-      
+      pg.addEventListener('click',e=>{ let c=e.target.closest('.product-card'); if(!c)return; let id=parseInt(c.dataset.id); if(e.target.classList.contains('btn-buy')){ wa(id,e.target.dataset.name); e.stopPropagation(); } else md(id); });
+      mc.addEventListener('click',e=>{ if(e.target.classList.contains('modal-buy')){ let b=e.target; wa(parseInt(b.dataset.id),b.dataset.name); mo.classList.remove('active'); } });
       mcl.addEventListener('click',()=>mo.classList.remove('active'));
       mo.addEventListener('click',e=>{ if(e.target===mo) mo.classList.remove('active'); });
       cb.addEventListener('click',()=>{ alert(cart.length?`🛒 ${cart.length} item`:'🛒 Keranjang kosong'); });
-      
       r();
     })();
   </script>
